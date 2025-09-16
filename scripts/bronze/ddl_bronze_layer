@@ -1,0 +1,83 @@
+/*
+=====================================================================================
+DDL Script: Create Bronze Tables
+=====================================================================================
+Script Purpose:
+This script creates tables in the 'bronze' schema, dropping existing tables
+if Ehey already exist.
+read this script to re-define the DDL structure of 'bronze' Tables
+=====================================================================================
+*/
+ print '---------------------';
+ print 'loading crm tables' ;
+ print '---------------------' ;
+ IF OBJECT_ID('bronzee.erp_cust_az12', 'U') IS NOT NULL DROP TABLE bronzee.erp_cust_az12;
+ CREATE TABLE bronzee.erp_cust_az12 (
+     CID VARCHAR(50),
+     BDATE DATE,
+     GEN VARCHAR(50)
+ CREATE TABLE bronzee.crm_cust_info (
+     cst_id INT,
+     cst_key VARCHAR(50),
+     cst_firstname VARCHAR(50),
+     cst_lastname VARCHAR(50),
+     cst_material_status VARCHAR(50),
+     cst_gndr VARCHAR(50),
+     cst_create_date DATE
+ );
+     
+
+ -- Drop and Create bronzee.crm_prd_info
+ IF OBJECT_ID('bronzee.crm_prd_info', 'U') IS NOT NULL DROP TABLE bronzee.crm_prd_info;
+ CREATE TABLE bronzee.crm_prd_info (
+     prd_id INT,
+     prd_key VARCHAR(50),
+     prd_nm VARCHAR(50),
+     prd_cost FLOAT,
+     prd_line VARCHAR(50),
+     prd_start_dt DATE,
+     prd_end_dt DATE
+ );
+  
+
+ -- Drop and Create bronzee.crm_sales_detail
+ IF OBJECT_ID('bronzee.crm_sales_detail', 'U') IS NOT NULL DROP TABLE bronzee.crm_sales_detail;
+ CREATE TABLE bronzee.crm_sales_detail (
+     sls_ord_num VARCHAR(50),
+     sls_prd_key VARCHAR(50),
+     sls_cust_id INT,
+     sls_order_dt DATE,
+     sls_ship_dt DATE,
+     sls_due_dt DATE,
+     sls_sales FLOAT,
+     sls_quantity INT,
+     sls_price FLOAT
+ );
+  
+ print '---------------------';
+ print 'loading erp tables' ;
+ print '---------------------' ;
+ IF OBJECT_ID('bronzee.erp_cust_az12', 'U') IS NOT NULL DROP TABLE bronzee.erp_cust_az12;
+ CREATE TABLE bronzee.erp_cust_az12 (
+     CID VARCHAR(50),
+     BDATE DATE,
+     GEN VARCHAR(50)
+ );
+ IF OBJECT_ID('bronzee.erp_loc_A101', 'U') IS NOT NULL DROP TABLE bronzee.erp_loc_A101;
+ CREATE TABLE bronzee.erp_loc_A101 (
+     CID VARCHAR(50),
+     CNTRY VARCHAR(50)
+ );
+ IF OBJECT_ID('bronzee.erp_PX_CAT_G1V2', 'U') IS NOT NULL DROP TABLE bronzee.erp_PX_CAT_G1V2;
+ CREATE TABLE bronzee.erp_PX_CAT_G1V2 (
+     ID VARCHAR(50),
+     CAT VARCHAR(50),
+     SUBCAT VARCHAR(50),
+     MAINTENANCE VARCHAR(50)
+ );
+
+
+
+    
+
+   
